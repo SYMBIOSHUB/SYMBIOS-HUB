@@ -1,8 +1,8 @@
---We open source for loader because of some issues!
 local HUB_URL = "https://raw.githubusercontent.com/SYMBIOSHUB/SYMBIOS-HUB/refs/heads/main/game%20script/RollAnime.luau"
 local Games = {
     [107653945083776]  = HUB_URL,
     [133623616308412]  = HUB_URL,
+    [133207600268474]  = HUB_URL,
     [133188236593503]  = "https://raw.githubusercontent.com/SYMBIOSHUB/SYMBIOS-HUB/refs/heads/main/game%20script/MagicLootOBF.lua",
 }
 
