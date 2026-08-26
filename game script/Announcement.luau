@@ -10,7 +10,7 @@ local BODY   =
     "Once our server reaches 150 members, we'll be dropping 1x FREE Potassium Key for one lucky winner! " ..
     "\n\nInvite your friends and let's get this server growing!"
 local TAG    = "GIVEAWAY"
-local AUTO_SECS = 15
+local AUTO_SECS = 12
 
 local C = {
     scrim  = Color3.fromHex("000000"),
