@@ -5,12 +5,20 @@ if not game:IsLoaded() then game.Loaded:Wait() end
 if not Players.LocalPlayer then repeat task.wait() until Players.LocalPlayer end
 
 local DISCORD_URL = "https://discord.com/invite/GxdzSeZHU"
-local TITLE  = " 150 Members Milestone Giveaway! "
-local BODY   =
-    "Once our server reaches 150 members, we'll be dropping 1x FREE Potassium Key for one lucky winner! " ..
-    "\n\nInvite your friends and let's get this server growing!"
-local TAG    = "GIVEAWAY"
-local AUTO_SECS = 12
+local AUTO_SECS = 15
+local ENTRIES = {
+    {
+        tag = "NEW FEATURE",
+        title = "Auto Join Private Server",
+        body = "When you end up in a public server, it will automatically join a private server for you.",
+    },
+    {
+        tag = "GIVEAWAY",
+        title = " 150 Members Milestone Giveaway! ",
+        body = "Once our server reaches 150 members, we'll be dropping 1x FREE Potassium Key for one lucky winner! " ..
+            "\n\nInvite your friends and let's get this server growing!",
+    },
+}
 
 local C = {
     scrim  = Color3.fromHex("000000"),
@@ -91,14 +99,23 @@ local body = new("ScrollingFrame", {
     ScrollingDirection = Enum.ScrollingDirection.Y,
 }, { pad(14, 16, 14, 16), vlist(10), new("UISizeConstraint", { MaxSize = Vector2.new(math.huge, 420) }) })
 
-local ec = new("Frame", { Parent = body, BackgroundColor3 = C.raise, BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, LayoutOrder = 1 }, { corner(4), stroke(C.line, 1, 0), pad(13, 14, 14, 14), vlist(8) })
-local topRow = new("Frame", { Parent = ec, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 18), LayoutOrder = 1 }, { hlist(8) })
-local chip = new("Frame", { Parent = topRow, BackgroundColor3 = C.ink, BorderSizePixel = 0, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18), LayoutOrder = 1 }, { corner(3), pad(0, 8, 0, 8), hlist(0, Enum.HorizontalAlignment.Center) })
-new("TextLabel", { Parent = chip, BackgroundTransparency = 1, FontFace = mono(W.semi), Text = track(TAG), TextSize = 9, TextColor3 = C.ground, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 11) })
-new("TextLabel", { Parent = ec, BackgroundTransparency = 1, FontFace = mono(W.semi), Text = TITLE, TextSize = 15, TextColor3 = C.ink, TextXAlignment = Enum.TextXAlignment.Left, TextWrapped = true, AutomaticSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 0, 0), LayoutOrder = 2 })
-new("TextLabel", { Parent = ec, BackgroundTransparency = 1, FontFace = mono(W.reg), Text = BODY, TextSize = 12, TextColor3 = C.ink2, LineHeight = 1.32, TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top, TextWrapped = true, AutomaticSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 0, 0), LayoutOrder = 3 })
+local function addEntry(e, order)
+    local ec = new("Frame", { Parent = body, BackgroundColor3 = C.raise, BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, LayoutOrder = order }, { corner(4), stroke(C.line, 1, 0), pad(13, 14, 14, 14), vlist(8) })
+    if e.tag then
+        local topRow = new("Frame", { Parent = ec, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 18), LayoutOrder = 1 }, { hlist(8) })
+        local chip = new("Frame", { Parent = topRow, BackgroundColor3 = C.ink, BorderSizePixel = 0, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18), LayoutOrder = 1 }, { corner(3), pad(0, 8, 0, 8), hlist(0, Enum.HorizontalAlignment.Center) })
+        new("TextLabel", { Parent = chip, BackgroundTransparency = 1, FontFace = mono(W.semi), Text = track(e.tag), TextSize = 9, TextColor3 = C.ground, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 11) })
+    end
+    if e.title then
+        new("TextLabel", { Parent = ec, BackgroundTransparency = 1, FontFace = mono(W.semi), Text = e.title, TextSize = 15, TextColor3 = C.ink, TextXAlignment = Enum.TextXAlignment.Left, TextWrapped = true, AutomaticSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 0, 0), LayoutOrder = 2 })
+    end
+    if e.body then
+        new("TextLabel", { Parent = ec, BackgroundTransparency = 1, FontFace = mono(W.reg), Text = e.body, TextSize = 12, TextColor3 = C.ink2, LineHeight = 1.32, TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top, TextWrapped = true, AutomaticSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 0, 0), LayoutOrder = 3 })
+    end
+end
+for i, e in ipairs(ENTRIES) do addEntry(e, i) end
 
-local disc = new("Frame", { Parent = body, BackgroundColor3 = C.ground, BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, LayoutOrder = 2 }, { corner(4), stroke(C.line2, 1, 0), pad(11, 11, 11, 12), vlist(9) })
+local disc = new("Frame", { Parent = body, BackgroundColor3 = C.ground, BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, LayoutOrder = #ENTRIES + 1 }, { corner(4), stroke(C.line2, 1, 0), pad(11, 11, 11, 12), vlist(9) })
 new("TextLabel", { Parent = disc, BackgroundTransparency = 1, FontFace = mono(W.med), Text = track("DISCORD"), TextSize = 10, TextColor3 = C.label, TextXAlignment = Enum.TextXAlignment.Left, Size = UDim2.new(1, 0, 0, 12), LayoutOrder = 1 })
 local linkRow = new("Frame", { Parent = disc, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 30), LayoutOrder = 2 }, { hlist(8) })
 local urlWrap = new("Frame", { Parent = linkRow, BackgroundColor3 = C.raise, BorderSizePixel = 0, Size = UDim2.new(1, -110, 1, 0), LayoutOrder = 1, ClipsDescendants = true }, { corner(3), stroke(C.line, 1, 0), pad(0, 10, 0, 10) })
