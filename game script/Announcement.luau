@@ -5,9 +5,9 @@ if not game:IsLoaded() then game.Loaded:Wait() end
 if not Players.LocalPlayer then repeat task.wait() until Players.LocalPlayer end
 
 local DISCORD_URL = "https://discord.com/invite/GxdzSeZHU"
-local TITLE  = "🚀 150 Members Milestone Giveaway! 🚀"
+local TITLE  = " 150 Members Milestone Giveaway! "
 local BODY   =
-    "Once our server reaches 150 members, we'll be dropping 1x FREE Potassium Key for one lucky winner! 🎁" ..
+    "Once our server reaches 150 members, we'll be dropping 1x FREE Potassium Key for one lucky winner! " ..
     "\n\nInvite your friends and let's get this server growing!"
 local TAG    = "GIVEAWAY"
 local AUTO_SECS = 15
